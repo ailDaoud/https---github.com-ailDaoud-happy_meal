@@ -6,12 +6,16 @@ import 'package:flutter_application_1/bloc/login_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(const MyApp());
+void main() async{
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
         title: 'Fancy Dialog Example',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.amber),
-          useMaterial3: true,
+          useMaterial3: true
         ),
         home: const Splash(),
       ),

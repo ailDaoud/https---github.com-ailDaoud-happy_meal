@@ -37,7 +37,7 @@ class _SplashState extends State<Splash> {
           children: [
             Center(
               child: Text(
-                "First splash",
+                "Happy Meal",
                 style: TextStyle(
                   color: Colors.amber[600],
                   fontSize: 40,

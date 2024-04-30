@@ -23,7 +23,7 @@ class _Register extends State<Register> {
             child: TextField(
               controller: number,
               decoration: const InputDecoration(
-                  hintText: "Enter your number",
+                  hintText: "Enter your name",
                   border: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black))),
             ),

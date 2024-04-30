@@ -29,6 +29,13 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context, state) {
         if (state is LoginInitial) {
           return Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                "Happy Meal",
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.amber,
+            ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,11 +43,15 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
+                    cursorColor: Colors.amber,
+                    keyboardType: TextInputType.number,
                     controller: number,
                     decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
                         fillColor: Colors.blueAccent,
                         hintText: "Enter your Number",
                         border: UnderlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
                             borderSide: BorderSide(color: Colors.black))),
                   ),
                 ),
@@ -49,8 +60,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 MaterialButton(
                     child: Container(
+                      color: Colors.amber,
                       padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Text("Login"),
+                      child: const Text(
+                        "Login",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white54),
+                      ),
                     ),
                     onPressed: () async {
                       BlocProvider.of<LoginBloc>(context)
@@ -73,15 +89,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       );*/
                     }),
-                MaterialButton(
-                    color: Colors.amber,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Varity(),
-                          ));
-                    })
               ],
             ),
           );

@@ -13,6 +13,8 @@ class LogininitstateError extends LoginState {
   LogininitstateError({required this.errormessage});
 }
 
+class Varityinit extends LoginState {}
+
 class VarityinitStateSucsess extends LoginState {}
 
 class VarityinitStateError extends LoginState {
