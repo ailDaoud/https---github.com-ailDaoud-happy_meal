@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/Ui/LoginPage.dart';
-import 'package:flutter_application_1/bloc/login_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -45,7 +43,7 @@ class _SplashState extends State<Splash> {
               ),
             ),
             const Center(
-              child: const CircularProgressIndicator(
+              child: CircularProgressIndicator(
                 color: Colors.amber,
                 backgroundColor: Colors.white,
               ),

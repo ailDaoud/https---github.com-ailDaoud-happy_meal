@@ -7,9 +7,11 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+ SharedPreferences? sharedPreferences ;
 void main() async{
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPreferences=await SharedPreferences.getInstance();
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {

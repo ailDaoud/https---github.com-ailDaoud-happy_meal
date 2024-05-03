@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_application_1/Repository/LoginRep.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +9,7 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
-    on<bbbbb>(bbbb);
+    on<SetName>(sendname);
     on<SetNumper>(fetchotpp);
     on<SetVarity>(sendotp);
   }
@@ -29,8 +30,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(VarityinitStateError(errormessage: sucsses.toString()));
     }
   }
-  FutureOr<void>bbbb(bbbbb event,Emitter<LoginState> emit){
-    emit(Varityinit());
-  }
 
+  FutureOr<void> sendname(SetName event, Emitter<LoginState> emit) async {
+    bool sucsses = await Auth.setname(event.name);
+    if (sucsses) {
+      emit(SetNameinitSucsess());
+    } else {
+      emit(SetNameNameError(errormessage: sucsses.toString()));
+    }
+  }
 }

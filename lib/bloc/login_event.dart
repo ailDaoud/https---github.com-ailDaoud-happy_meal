@@ -4,7 +4,7 @@ part of 'login_bloc.dart';
 sealed class LoginEvent {}
 
 class Initialevent extends LoginEvent {}
-class bbbbb extends LoginEvent{}
+
 
 class SetNumper extends LoginEvent {
   final String number;
@@ -24,3 +24,5 @@ class SetName extends LoginEvent {
 
   SetName({required this.name});
 }
+
+class GetCategories extends LoginEvent{}

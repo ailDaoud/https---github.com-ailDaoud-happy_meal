@@ -23,10 +23,14 @@ class VarityinitStateError extends LoginState {
   VarityinitStateError({required this.errormessage});
 }
 
-class SetNameyinitSucsess extends LoginState {}
+class SetNameinitSucsess extends LoginState {}
 
-class LoginNameError extends LoginState {
+class SetNameNameError extends LoginState {
   final String errormessage;
 
-  LoginNameError({required this.errormessage});
+  SetNameNameError({required this.errormessage});
 }
+
+class Getcategoriessucsess extends LoginState {}
+
+class GetcategoriesFailed extends LoginState {}
