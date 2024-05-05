@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'login_bloc.dart';
 
 @immutable
@@ -31,6 +32,17 @@ class SetNameNameError extends LoginState {
   SetNameNameError({required this.errormessage});
 }
 
-class Getcategoriessucsess extends LoginState {}
+class LoadingCategories extends LoginState {}
 
-class GetcategoriesFailed extends LoginState {}
+
+class Cetcategoriessucsess extends LoginState {
+ final Categoryy categoryy;
+
+  Cetcategoriessucsess( this.categoryy);
+}
+
+class CetcategoriesFailed extends LoginState {
+  final String message;
+
+  CetcategoriesFailed( this.message);
+}

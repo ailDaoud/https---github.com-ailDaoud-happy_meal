@@ -1,12 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Categoryy {
-  Data data;
-
+  Data? data;
   Categoryy({
-    required this.data,
+   this.data,
   });
 
+  
   factory Categoryy.fromRawJson(String str) =>
       Categoryy.fromJson(json.decode(str));
 
@@ -17,7 +18,7 @@ class Categoryy {
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        "data": data!.toJson(),
       };
 }
 

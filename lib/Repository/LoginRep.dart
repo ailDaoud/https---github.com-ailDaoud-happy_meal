@@ -32,10 +32,12 @@ class Auth {
   }
 
   static Future<bool> setotp(String number, String otp) async {
-    final Dio dio = Dio();
-    var d = {"phone_number": number, "otp": otp};
+    var dio = Dio();
+    var c = await sharedPreferences!.getString("Number");
+    var d = {"phone_number": c, "otp": "1111"};
+
     try {
-      Response secondRespons = await dio.post(
+      var secondRespons = await dio.post(
         'https://meal-market.com/api/verify_otp',
         data: jsonEncode(d),
         options: Options(headers: {
@@ -47,11 +49,13 @@ class Auth {
         sharedPreferences?.setString(
             "token", secondRespons.data["data"]["token"]);
         print(sharedPreferences?.getString("token"));
+        print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
         return true;
       } else {
         return false;
       }
-    } catch (e) {
+    } on DioException catch (e) {
+      print(e);
       return false;
     }
   }
@@ -79,21 +83,18 @@ class Auth {
     }
   }
 
-  Future<Map<String, dynamic>> fetchcategories() async {
+  Future<Categoryy> fetchcategories() async {
     Dio dio = Dio();
-    Map<String, List> map = {};
+
     try {
-      Response category = await dio.get('https://meal-market.com/api/home');
-
-      final a = <String, List>{
-        category.data["data"]: category.data["data"].value
-      };
-      map.addEntries(a.entries);
-
-      return map;
-    } catch (e) {
-      log(e.toString());
+      var response = await dio.get('https://meal-market.com/api/home');
+      Categoryy categoryy = Categoryy.fromJson(response.data);
+      print(response.data);
+      print("::::::::::::::::::::::::::::::::::::::::::::");
+      return categoryy;
+    } on DioException catch (e) {
+      print(e);
+      return Categoryy();
     }
-    return {};
   }
 }

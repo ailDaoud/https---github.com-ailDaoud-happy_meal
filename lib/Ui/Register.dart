@@ -19,7 +19,7 @@ class _Register extends State<Register> {
     return Scaffold(body: BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is SetNameinitSucsess) {
-          return const Home();
+          return Container();
         } else if (state is SetNameNameError) {
           return const Text("Wrong With Varifyy");
         }

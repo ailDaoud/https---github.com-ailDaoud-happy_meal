@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_application_1/Models/caregoriesmodel.dart';
 import 'package:flutter_application_1/Repository/LoginRep.dart';
 import 'package:meta/meta.dart';
 
@@ -12,6 +14,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<SetName>(sendname);
     on<SetNumper>(fetchotpp);
     on<SetVarity>(sendotp);
+    on<GetCategories>(getCategories);
   }
   FutureOr<void> fetchotpp(SetNumper event, Emitter<LoginState> emit) async {
     bool sucsses = await Auth.fetchotp(event.number);
@@ -37,6 +40,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(SetNameinitSucsess());
     } else {
       emit(SetNameNameError(errormessage: sucsses.toString()));
+    }
+  }
+
+  FutureOr<void> getCategories(
+      GetCategories event, Emitter<LoginState> emit) async {
+    Categoryy categoryy=Categoryy();
+    try {
+      categoryy=await Auth().fetchcategories();
+      if(categoryy==null){
+        emit(LoadingCategories());
+      }
+      else{
+      emit(Cetcategoriessucsess(categoryy));}
+    } catch (e) {
+      emit(CetcategoriesFailed("mmmmmmmmmmmmmmmmmmm"));
     }
   }
 }

@@ -33,6 +33,17 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Center(
+              child: CircleAvatar(
+                maxRadius: 30,
+                minRadius: 20,
+                child: Icon(Icons.restaurant),
+                foregroundColor: Colors.blueAccent,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             Center(
               child: Text(
                 "Happy Meal",

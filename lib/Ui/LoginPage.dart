@@ -1,11 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_1/Repository/LoginRep.dart';
+import 'package:flutter_application_1/Ui/Categories.dart';
 import 'package:flutter_application_1/Ui/varify.dart';
 import 'package:flutter_application_1/bloc/login_bloc.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController number = TextEditingController();
   GlobalKey<FormState> formstate = GlobalKey();
-  //=LoginBloc(Auth());
   final Auth auth = Auth();
   @override
   void initState() {
@@ -39,9 +38,9 @@ class _LoginPageState extends State<LoginPage> {
             appBar: AppBar(
               title: const Text(
                 "Happy Meal",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.blueGrey),
               ),
-              backgroundColor: Colors.amber,
+              backgroundColor: Color.fromARGB(255, 245, 245, 53),
             ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -58,14 +57,20 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return "";
                       },
-                      cursorColor: Colors.amber,
+                      cursorColor: Colors.blueGrey,
                       keyboardType: TextInputType.number,
                       controller: number,
                       decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+                        enabledBorder:OutlineInputBorder(borderSide: BorderSide(color: Colors.black)) ,
+                        focusColor: Colors.amber,
+                        hoverColor: Colors.black,
                           contentPadding: EdgeInsets.symmetric(horizontal: 20),
                           fillColor: Colors.blueAccent,
                           hintText: "Enter your Number",
-                          border: UnderlineInputBorder(
+                          hintStyle: TextStyle(color:Colors.blueGrey ),
+                          border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
                               borderSide: BorderSide(color: Colors.black))),
@@ -77,35 +82,39 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 MaterialButton(
                     child: Container(
-                      color: Colors.amber,
+                      color: Color.fromARGB(255, 231, 244, 63),
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: const Text(
                         "Login",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white54),
+                        style: TextStyle(color: Colors.blueGrey),
                       ),
                     ),
                     onPressed: () async {
                       BlocProvider.of<LoginBloc>(context)
                           .add(SetNumper(number: number.text));
-                          var category = await Dio().get('https://meal-market.com/api/home');
-                          print(category.data["data"]);
-                          print("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz");
+
                       if (formstate.currentState!.validate()) {}
 
                       sharedPreferences!.setString("Number", number.text);
                     }),
+                MaterialButton(
+                    child: const Text("go to categories",style: TextStyle(color: Colors.blueGrey),),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CategoriesUiState()));
+                    })
               ],
             ),
           );
         } else if (state is LogininitstateSucsess) {
-          setState(() {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Varify(),
-                ));
-          });
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Varify(),
+              ));
         }
         return const Text(
           "wronge ",
