@@ -24,5 +24,3 @@ class SetName extends LoginEvent {
 
   SetName({required this.name});
 }
-
-class GetCategories extends LoginEvent{}

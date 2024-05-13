@@ -83,18 +83,5 @@ class Auth {
     }
   }
 
-  Future<Categoryy> fetchcategories() async {
-    Dio dio = Dio();
-
-    try {
-      var response = await dio.get('https://meal-market.com/api/home');
-      Categoryy categoryy = Categoryy.fromJson(response.data);
-      print(response.data);
-      print("::::::::::::::::::::::::::::::::::::::::::::");
-      return categoryy;
-    } on DioException catch (e) {
-      print(e);
-      return Categoryy();
-    }
-  }
+  
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/Ui/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -21,8 +22,9 @@ class _SplashState extends State<Splash> {
 
   splashh() async {
     await Future.delayed(const Duration(seconds: 3));
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    /*Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));*/
+    return context.go('/login');
   }
 
   @override
@@ -37,7 +39,7 @@ class _SplashState extends State<Splash> {
               child: CircleAvatar(
                 maxRadius: 30,
                 minRadius: 20,
-                child: Icon(Icons.restaurant),
+                child: Icon(Icons.home),
                 foregroundColor: Colors.blueAccent,
               ),
             ),
@@ -52,6 +54,9 @@ class _SplashState extends State<Splash> {
                   fontSize: 40,
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 30,
             ),
             const Center(
               child: CircularProgressIndicator(

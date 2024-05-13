@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class GetProdactsByid {
-  List<Datum> data;
+  List<Datumm> data;
 
   GetProdactsByid({
     required this.data,
@@ -14,7 +14,7 @@ class GetProdactsByid {
 
   factory GetProdactsByid.fromJson(Map<String, dynamic> json) =>
       GetProdactsByid(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<Datumm>.from(json["data"].map((x) => Datumm.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -22,22 +22,22 @@ class GetProdactsByid {
       };
 }
 
-class Datum {
+class Datumm {
   int id;
   String name;
   List<Product> products;
 
-  Datum({
+  Datumm({
     required this.id,
     required this.name,
     required this.products,
   });
 
-  factory Datum.fromRawJson(String str) => Datum.fromJson(json.decode(str));
+  factory Datumm.fromRawJson(String str) => Datumm.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Datumm.fromJson(Map<String, dynamic> json) => Datumm(
         id: json["id"],
         name: json["name"],
         products: List<Product>.from(

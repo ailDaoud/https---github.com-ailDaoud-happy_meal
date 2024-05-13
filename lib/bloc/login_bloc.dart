@@ -14,7 +14,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<SetName>(sendname);
     on<SetNumper>(fetchotpp);
     on<SetVarity>(sendotp);
-    on<GetCategories>(getCategories);
   }
   FutureOr<void> fetchotpp(SetNumper event, Emitter<LoginState> emit) async {
     bool sucsses = await Auth.fetchotp(event.number);
@@ -43,18 +42,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  FutureOr<void> getCategories(
-      GetCategories event, Emitter<LoginState> emit) async {
-    Categoryy categoryy=Categoryy();
-    try {
-      categoryy=await Auth().fetchcategories();
-      if(categoryy==null){
-        emit(LoadingCategories());
-      }
-      else{
-      emit(Cetcategoriessucsess(categoryy));}
-    } catch (e) {
-      emit(CetcategoriesFailed("mmmmmmmmmmmmmmmmmmm"));
-    }
-  }
+  
 }

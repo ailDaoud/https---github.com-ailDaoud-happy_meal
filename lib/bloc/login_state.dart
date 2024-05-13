@@ -32,17 +32,4 @@ class SetNameNameError extends LoginState {
   SetNameNameError({required this.errormessage});
 }
 
-class LoadingCategories extends LoginState {}
 
-
-class Cetcategoriessucsess extends LoginState {
- final Categoryy categoryy;
-
-  Cetcategoriessucsess( this.categoryy);
-}
-
-class CetcategoriesFailed extends LoginState {
-  final String message;
-
-  CetcategoriesFailed( this.message);
-}

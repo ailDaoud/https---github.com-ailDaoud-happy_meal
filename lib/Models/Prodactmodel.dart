@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 class GetProdacts {
-  List<Datum> data;
+  List<Datumm> ?data;
 
   GetProdacts({
-    required this.data,
+     this.data,
   });
 
   factory GetProdacts.fromRawJson(String str) =>
@@ -13,15 +13,15 @@ class GetProdacts {
   String toRawJson() => json.encode(toJson());
 
   factory GetProdacts.fromJson(Map<String, dynamic> json) => GetProdacts(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<Datumm>.from(json["data"].map((x) => Datumm.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
-class Datum {
+class Datumm {
   int id;
   String name;
   String slug;
@@ -31,7 +31,7 @@ class Datum {
   int categoryId;
   int subCategoryId;
 
-  Datum({
+  Datumm({
     required this.id,
     required this.name,
     required this.slug,
@@ -42,11 +42,11 @@ class Datum {
     required this.subCategoryId,
   });
 
-  factory Datum.fromRawJson(String str) => Datum.fromJson(json.decode(str));
+  factory Datumm.fromRawJson(String str) => Datumm.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Datumm.fromJson(Map<String, dynamic> json) => Datumm(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
