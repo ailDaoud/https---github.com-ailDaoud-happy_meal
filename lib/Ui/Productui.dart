@@ -27,15 +27,17 @@ class _ProdactUiState extends State<ProdactUi> {
         );
       } else if (state is GetProductSucsess) {
         return Expanded(
-          child: Card(
-            child: ListTile(
-              title: Text("${state.getProdacts.data![0].name}"),
-              subtitle: Text("${state.getProdacts.data![0].price}"),
+          child: Center(
+            child: Card(
+              child: ListTile(
+                title: Text("${state.getProdacts.data![0].name}"),
+                subtitle: Text("${state.getProdacts.data![0].price}"),
+              ),
             ),
           ),
         );
       }
-      return Container();
+      return CircularProgressIndicator.adaptive(strokeAlign: 1,);
     });
   }
 }

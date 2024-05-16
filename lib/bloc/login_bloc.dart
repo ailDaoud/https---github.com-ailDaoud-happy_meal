@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_application_1/Models/caregoriesmodel.dart';
+
 import 'package:flutter_application_1/Repository/LoginRep.dart';
 import 'package:meta/meta.dart';
 
@@ -41,6 +40,4 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(SetNameNameError(errormessage: sucsses.toString()));
     }
   }
-
-  
 }

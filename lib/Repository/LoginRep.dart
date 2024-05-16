@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
+
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/Models/caregoriesmodel.dart';
 
 import 'package:flutter_application_1/main.dart';
 
@@ -48,8 +47,7 @@ class Auth {
       if (secondRespons.statusCode == 200 && secondRespons.statusCode! < 300) {
         sharedPreferences?.setString(
             "token", secondRespons.data["data"]["token"]);
-        print(sharedPreferences?.getString("token"));
-        print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+
         return true;
       } else {
         return false;
@@ -82,6 +80,4 @@ class Auth {
       return false;
     }
   }
-
-  
 }

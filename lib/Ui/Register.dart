@@ -17,47 +17,66 @@ class _Register extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(""),
+          backgroundColor: Colors.greenAccent,
+        ),
         body: BlocConsumer<LoginBloc, LoginState>(
-      listenWhen: (previous, current) => current is SetNameinitSucsess,
-      buildWhen: (previous, current) => current is SetNameinitSucsess,
-      listener: (context, state) {
-        if (state is SetNameinitSucsess) {
-          return context.go('/category');
-        } else {
-          print("***************");
-        }
-      },
-      builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextField(
-                controller: name,
-                decoration: const InputDecoration(
-                    hintText: "Enter your name",
-                    border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black))),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            MaterialButton(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: const Text("Login"),
+          listenWhen: (previous, current) => current is SetNameinitSucsess,
+          buildWhen: (previous, current) => current is SetNameinitSucsess,
+          listener: (context, state) {
+            if (state is SetNameinitSucsess) {
+              return context.go('/category');
+            } else {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Some thing Wrong")));
+            }
+          },
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _header(context),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: name,
+                    decoration: const InputDecoration(
+                        hintText: "Enter your name",
+                        border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black))),
+                  ),
                 ),
-                onPressed: () {
-                  BlocProvider.of<LoginBloc>(context)
-                      .add(SetName(name: name.text));
-                  sharedPreferences!.setString("name", name.text);
-                })
-          ],
-        );
-      },
-    ));
+                const SizedBox(
+                  height: 30,
+                ),
+                MaterialButton(
+                    child: Container(
+                      color: Colors.greenAccent,
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: const Text("Login"),
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<LoginBloc>(context)
+                          .add(SetName(name: name.text));
+                      sharedPreferences!.setString("name", name.text);
+                    })
+              ],
+            );
+          },
+        ));
   }
+}
+
+_header(context) {
+  return const Column(
+    children: [
+      Text(
+        "Welcome To Happy Meal",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+      Text("Set Your Name"),
+    ],
+  );
 }

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_application_1/Models/Prodactmodel.dart';
 import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
-import 'package:flutter_application_1/Models/caregoriesmodel.dart';
+
 import 'package:flutter_application_1/Repository/ContentRep.dart';
 import 'package:flutter_application_1/main.dart';
 
@@ -27,8 +27,6 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
       if (subcategory.isEmpty) {
         emit(LoadingSubCategories());
       } else {
-        print(subcategory.length);
-        print("+++++++++++++++++++++++++++++++++++++++++");
         emit(CetSubcategoriessucsess(subcategory));
       }
     } catch (e) {

@@ -39,7 +39,7 @@ class _SplashState extends State<Splash> {
               child: CircleAvatar(
                 maxRadius: 30,
                 minRadius: 20,
-                child: Icon(Icons.home),
+                child: Icon(Icons.restaurant_menu),
                 foregroundColor: Colors.blueAccent,
               ),
             ),
@@ -58,12 +58,6 @@ class _SplashState extends State<Splash> {
             const SizedBox(
               height: 30,
             ),
-            const Center(
-              child: CircularProgressIndicator(
-                color: Colors.amber,
-                backgroundColor: Colors.white,
-              ),
-            )
           ]),
     );
   }

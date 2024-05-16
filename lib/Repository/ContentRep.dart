@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_application_1/Models/Prodactmodel.dart';
 import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 import 'package:flutter_application_1/Models/caregoriesmodel.dart';
-import 'dart:convert';
+
 
 import 'package:flutter_application_1/main.dart';
 
@@ -30,8 +30,6 @@ class ContantRep {
           .get('https://meal-market.com/api/products/subcategory/1?page=$id');
       SubProdacts subProdacts = SubProdacts.fromJson(response.data);
       List<Datum> res = subProdacts.data.toList();
-      print(res.length);
-      print("::::::::::::::::::::::::::::::::::::::::::::");
       return res;
     } on DioException catch (e) {
       return [];

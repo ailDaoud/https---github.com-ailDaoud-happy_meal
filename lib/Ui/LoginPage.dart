@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Models/GetCategoriesbyidmodel.dart';
-import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 
 import 'package:flutter_application_1/Repository/LoginRep.dart';
-import 'package:flutter_application_1/Ui/Categories.dart';
-import 'package:flutter_application_1/Ui/varify.dart';
+
 import 'package:flutter_application_1/bloc/login_bloc.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,14 +38,16 @@ class _LoginPageState extends State<LoginPage> {
             if (state is LogininitstateSucsess) {
               return context.go('/verify');
             } else if (state is LogininitstateError) {
-              print("error^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Some thing Wrong")));
             }
           },
           builder: (context, state) {
             return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                _header(context),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Form(
@@ -79,32 +77,32 @@ class _LoginPageState extends State<LoginPage> {
                           hintStyle: TextStyle(color: Colors.blueGrey),
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(90)),
+                                  BorderRadius.all(Radius.circular(200)),
                               borderSide: BorderSide(color: Colors.black))),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
                 MaterialButton(
-                    child: Container(
-                      color: Colors.greenAccent,
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Text(
-                        "Login",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.blueGrey),
-                      ),
+                  height: 90,
+                  minWidth: 70,
+                  child: Container(
+                    color: Color.fromARGB(255, 92, 227, 162),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: const Text(
+                      "Login",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.blueGrey),
                     ),
-                    onPressed: () async {
-                      BlocProvider.of<LoginBloc>(context)
-                          .add(SetNumper(number: number.text));
+                  ),
+                  onPressed: () async {
+                    BlocProvider.of<LoginBloc>(context)
+                        .add(SetNumper(number: number.text));
 
-                      if (formstate.currentState!.validate()) {}
+                    if (formstate.currentState!.validate()) {}
 
-                      sharedPreferences!.setString("Number", number.text);
-                    }),
+                    sharedPreferences!.setString("Number", number.text);
+                  },
+                ),
               ],
             );
           },
@@ -112,98 +110,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-/* BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        if (state is LoginInitial) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                "Happy Meal",
-                style: TextStyle(color: Colors.blueGrey),
-              ),
-              backgroundColor: Colors.greenAccent,
-            ),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Form(
-                    key: formstate,
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter Number !!!!";
-                        }
-                        return "";
-                      },
-                      cursorColor: Colors.blueGrey,
-                      keyboardType: TextInputType.number,
-                      controller: number,
-                      decoration: const InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          disabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          focusColor: Colors.amber,
-                          hoverColor: Colors.black,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                          fillColor: Colors.blueAccent,
-                          hintText: "Enter your Number",
-                          hintStyle: TextStyle(color: Colors.blueGrey),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(90)),
-                              borderSide: BorderSide(color: Colors.black))),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                MaterialButton(
-                    child: Container(
-                      color: Colors.greenAccent,
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Text(
-                        "Login",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.blueGrey),
-                      ),
-                    ),
-                    onPressed: () async {
-                      BlocProvider.of<LoginBloc>(context)
-                          .add(SetNumper(number: number.text));
-
-                      if (formstate.currentState!.validate()) {}
-
-                      sharedPreferences!.setString("Number", number.text);
-                    }),
-                MaterialButton(
-                    child: const Text(
-                      "go to categories",
-                      style: TextStyle(color: Colors.blueGrey),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CategoriesUiState()));
-                    })
-              ],
-            ),
-          );
-        } else if (state is LogininitstateSucsess) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Varify(),
-              ));
-          return context.go('/varify');
-        }
-        return Container();
-      },
-    ); */
+_header(context) {
+  return const Column(
+    children: [
+      Text(
+        "Welcome To Happy Meal",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+      Text("Enter your Number to login"),
+    ],
+  );
+}
