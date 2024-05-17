@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_application_1/Ui/LoginPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class Splash extends StatefulWidget {
@@ -24,7 +25,8 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(seconds: 3));
     /*Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const LoginPage()));*/
-    return context.go('/login');
+    //  return context.go('/login');
+    return context.pushReplacement('/login');
   }
 
   @override
@@ -35,28 +37,28 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Center(
+             Center(
               child: CircleAvatar(
-                maxRadius: 30,
-                minRadius: 20,
+                maxRadius: 30.sp,
+                minRadius: 20.sp,
                 child: Icon(Icons.restaurant_menu),
                 foregroundColor: Colors.blueAccent,
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+             height: MediaQuery.of(context).size.height / 10,
             ),
             Center(
               child: Text(
                 "Happy Meal",
                 style: TextStyle(
                   color: Colors.amber[600],
-                  fontSize: 40,
+                  fontSize: 40.sp,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 10,
             ),
           ]),
     );

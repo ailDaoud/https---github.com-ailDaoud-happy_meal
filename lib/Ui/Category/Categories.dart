@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_application_1/Ui/Category/bloc/category_bloc.dart';
+import 'package:flutter_application_1/Ui/SubCategory/bloc/content_bloc.dart';
 import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 import 'package:flutter_application_1/Models/caregoriesmodel.dart';
-import 'package:flutter_application_1/Ui/Productui.dart';
+import 'package:flutter_application_1/Ui/Product/Productui.dart';
 
-import 'package:flutter_application_1/bloc/bloc/category_bloc.dart';
-import 'package:flutter_application_1/bloc/content_bloc.dart';
+
 
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesUiState extends StatefulWidget {
   const CategoriesUiState({super.key});
@@ -33,29 +35,19 @@ class _CategoriesUiStateState extends State<CategoriesUiState> {
       ),
       body: Column(
         children: [
-          const Text(
+          Text(
             "Categories",
             style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.black),
           ),
-          const SizedBox(
-            height: 10.0,
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 14,
           ),
           SSS(),
-          /* BlocBuilder<ContentBloc, ContentState>(
-            builder: (context, state) {
-              if (state is CetcategoriesFailed) {
-                return const Text("wrongggggg");
-              } else if (state is Cetcategoriessucsess) {
-                return Sucsess(
-                  cate: state.categoryy,
-                );
-              }
-              return const Center(child: CircularProgressIndicator());
-            },
-          ),*/
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 14,
           ),
           BlocBuilder<ContentBloc, ContentState>(
             builder: (context, state) {
@@ -107,7 +99,7 @@ class Sucsess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 35.0,
+      height: 35.0.h,
       margin: const EdgeInsets.only(top: 16),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -128,7 +120,10 @@ class Sucsess extends StatelessWidget {
                     color: index == currentindex
                         ? Colors.blueAccent
                         : Colors.greenAccent),
-                child: Text("${cate.data!.categories[index].name}"),
+                child: Text(
+                  "${cate.data!.categories[index].name}",
+                  style: TextStyle(fontSize: 12.sp),
+                ),
               ),
             );
           }),
@@ -151,13 +146,16 @@ class _SubcategoriesState extends State<Subcategories> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: 50.h,
       child: ListView.builder(
         itemCount: 3, //subcate.length,
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              title: Text("${subcate[index].name}"),
+              title: Text(
+                "${subcate[index].name}",
+                style: TextStyle(fontSize: 12.sp),
+              ),
             ),
           );
         },
@@ -187,7 +185,10 @@ class Name extends StatelessWidget {
                         builder: (context) => const ProdactUi(),
                       ));
                 },
-                title: Text("${subcate[index].name}"),
+                title: Text(
+                  "${subcate[index].name}",
+                  style: TextStyle(fontSize: 12.sp),
+                ),
               ),
             ),
           );

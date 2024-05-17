@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Ui/Product/bloc/product_bloc.dart';
 import 'package:flutter_application_1/Models/Prodactmodel.dart';
-import 'package:flutter_application_1/bloc/content_bloc.dart';
+
+
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProdactUi extends StatefulWidget {
   const ProdactUi({super.key});
@@ -14,13 +18,13 @@ class _ProdactUiState extends State<ProdactUi> {
   GetProdacts getProdacts = GetProdacts();
   @override
   void initState() {
-    BlocProvider.of<ContentBloc>(context).add(GetProduct());
+    BlocProvider.of<ProductBloc>(context).add(GetProduct());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ContentBloc, ContentState>(builder: (context, state) {
+    return BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
       if (state is LoadingProduct) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -30,14 +34,18 @@ class _ProdactUiState extends State<ProdactUi> {
           child: Center(
             child: Card(
               child: ListTile(
-                title: Text("${state.getProdacts.data![0].name}"),
-                subtitle: Text("${state.getProdacts.data![0].price}"),
+                title: Text(
+                  "${state.getProdacts.data![0].name}",
+                  style: TextStyle(fontSize: 12.sp),
+                ),
+                subtitle: Text("${state.getProdacts.data![0].price}",
+                    style: TextStyle(fontSize: 12.sp)),
               ),
             ),
           ),
         );
       }
-      return CircularProgressIndicator.adaptive(strokeAlign: 1,);
+      return Center(child: CircularProgressIndicator());
     });
   }
 }

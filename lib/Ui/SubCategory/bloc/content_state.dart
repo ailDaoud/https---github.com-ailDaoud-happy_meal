@@ -23,16 +23,3 @@ class CetSubcategoriesFailed extends ContentState {
   const CetSubcategoriesFailed(this.message);
 }
 
-class GetProductSucsess extends ContentState {
-  final GetProdacts getProdacts;
-
-  const GetProductSucsess({required this.getProdacts});
-}
-
-class CetProductFailed extends ContentState {
-  final String message;
-
-  const CetProductFailed(this.message);
-}
-
-class LoadingProduct extends ContentState {}

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Ui/Categories.dart';
-import 'package:flutter_application_1/Ui/LoginPage.dart';
-import 'package:flutter_application_1/Ui/Productui.dart';
-import 'package:flutter_application_1/Ui/Register.dart';
+import 'package:flutter_application_1/Ui/Category/Categories.dart';
+import 'package:flutter_application_1/Ui/Login/LoginPage.dart';
+import 'package:flutter_application_1/Ui/Product/Productui.dart';
+import 'package:flutter_application_1/Ui/Login/Register.dart';
 import 'package:flutter_application_1/Ui/Splash.dart';
-import 'package:flutter_application_1/Ui/varify.dart';
+import 'package:flutter_application_1/Ui/Login/varify.dart';
 import 'package:go_router/go_router.dart';
 
 class Myroute {
@@ -52,26 +52,5 @@ class Myroute {
             },
           ),
         ]),
-    /* GoRoute(
-      name: 'login',
-      path: '/login',
-      pageBuilder: (context, state) {
-        return MaterialPage(child: LoginPage());
-      },
-    ),
-    GoRoute(
-      name: '/varify',
-      path: 'verify',
-      pageBuilder: (context, state) {
-        return MaterialPage(child: Varify());
-      },
-    ),
-    GoRoute(
-      name: '/register',
-      path: 'register',
-      pageBuilder: (context, state) {
-        return MaterialPage(child: Register());
-      },
-    )*/
   ]);
 }

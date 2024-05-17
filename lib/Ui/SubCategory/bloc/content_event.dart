@@ -11,4 +11,3 @@ sealed class ContentEvent extends Equatable {
 
 class GetsubCategories extends ContentEvent{
 }
-class GetProduct extends ContentEvent{}

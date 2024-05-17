@@ -3,7 +3,6 @@ import 'package:flutter_application_1/Models/Prodactmodel.dart';
 import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 import 'package:flutter_application_1/Models/caregoriesmodel.dart';
 
-
 import 'package:flutter_application_1/main.dart';
 
 class ContantRep {
@@ -13,8 +12,7 @@ class ContantRep {
     try {
       var response = await dio.get('https://meal-market.com/api/home');
       Categoryy categoryy = Categoryy.fromJson(response.data);
-      //  print(response.data);
-      // print("::::::::::::::::::::::::::::::::::::::::::::");
+
       return categoryy;
     } on DioException catch (e) {
       print(e);
@@ -35,15 +33,15 @@ class ContantRep {
       return [];
     }
   }
-   Future<GetProdacts>fetchproduct(int id)async{
-    Dio dio =Dio();
-    id=sharedPreferences!.getInt("proid")??0;
-    try{
-      var response=await dio.get('https://meal-market.com/api/products/$id');
-      GetProdacts getProdacts=GetProdacts.fromJson(response.data);
+
+  Future<GetProdacts> fetchproduct(int id) async {
+    Dio dio = Dio();
+    id = sharedPreferences!.getInt("proid") ?? 0;
+    try {
+      var response = await dio.get('https://meal-market.com/api/products/$id');
+      GetProdacts getProdacts = GetProdacts.fromJson(response.data);
       return getProdacts;
-    }
-    on DioException catch(e){
+    } on DioException catch (e) {
       return GetProdacts();
     }
   }

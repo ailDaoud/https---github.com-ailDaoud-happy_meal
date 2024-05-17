@@ -1,13 +1,16 @@
 //import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Ui/Category/bloc/category_bloc.dart';
+import 'package:flutter_application_1/Ui/SubCategory/bloc/content_bloc.dart';
+import 'package:flutter_application_1/Ui/Login/bloc/login_bloc.dart';
+import 'package:flutter_application_1/Ui/Product/bloc/product_bloc.dart';
 import 'package:flutter_application_1/Routes/GORoute.dart';
-import 'package:flutter_application_1/Ui/Register.dart';
-import 'package:flutter_application_1/Ui/Splash.dart';
-import 'package:flutter_application_1/bloc/bloc/category_bloc.dart';
-import 'package:flutter_application_1/bloc/content_bloc.dart';
-import 'package:flutter_application_1/bloc/login_bloc.dart';
+
+
+
 import 'package:flutter_application_1/consts/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences? sharedPreferences;
@@ -32,14 +35,22 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoryBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProductBloc(),
         )
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Fancy Dialog Example',
-        theme: Style.themeData(isdark, context),
-       // home: const Splash(),
-       routerConfig: Myroute().router,
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Happy meal',
+          theme: Style.themeData(isdark, context),
+          // home: const Splash(),
+          routerConfig: Myroute().router,
+        ),
       ),
     );
   }

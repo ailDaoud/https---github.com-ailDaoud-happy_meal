@@ -1,8 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Ui/Login/bloc/login_bloc.dart';
 
-import 'package:flutter_application_1/bloc/login_bloc.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -20,24 +22,36 @@ class _VarifyState extends State<Varify> {
   GlobalKey<FormState> formstate = GlobalKey();
 
   final TextEditingController otp = TextEditingController();
-  OtpFieldController otpController = OtpFieldController();
+  final OtpFieldController otpController = OtpFieldController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent,
-        title: Text("Verify"),
+        title: Text(
+          "Verify",
+          style: TextStyle(fontSize: 30.sp),
+        ),
       ),
       body: BlocConsumer<LoginBloc, LoginState>(
-        listenWhen: (previous, current) => current is VarityinitStateSucsess,
-        buildWhen: (previous, current) => current is VarityinitStateSucsess,
+        //   listenWhen: (previous, current) => current is VarityinitStateSucsess,
+        buildWhen: (previous, current) => current is VarityinitStateError,
         listener: (context, state) {
           if (state is VarityinitStateSucsess) {
             return context.go('/register');
           } else if (state is VarityinitStateError) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("Some thing Wrong")));
+            AwesomeDialog(
+              context: context,
+              dialogType: DialogType.infoReverse,
+              headerAnimationLoop: true,
+              animType: AnimType.bottomSlide,
+              title: 'Something wrong',
+              reverseBtnOrder: true,
+              btnOkOnPress: () {},
+              btnCancelOnPress: () {},
+              desc: 'Wrong otp',
+            ).show();
           }
         },
         builder: (context, state) => Column(
@@ -58,17 +72,22 @@ class _VarifyState extends State<Varify> {
                       outlineBorderRadius: 15,
                       style: TextStyle(fontSize: 17),
                       onChanged: (pin) {},
-                      onCompleted: (pin) {}),
+                      onCompleted: (pin) {
+                        sharedPreferences!.setString("otp", pin);
+                      }),
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: MediaQuery.of(context).size.height / 10,
               ),
               MaterialButton(
                   child: Container(
                     color: Colors.greenAccent,
                     padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: const Text("Send"),
+                    child: Text(
+                      "Send",
+                      style: TextStyle(fontSize: 15.sp),
+                    ),
                   ),
                   onPressed: () async {
                     if (formstate.currentState!.validate()) {}
@@ -76,7 +95,7 @@ class _VarifyState extends State<Varify> {
                     BlocProvider.of<LoginBloc>(context).add(SetVarity(
                         number:
                             sharedPreferences!.getString("Number").toString(),
-                        otp: otpp));
+                        otp: otpController.toString()));
                   })
             ]),
       ),

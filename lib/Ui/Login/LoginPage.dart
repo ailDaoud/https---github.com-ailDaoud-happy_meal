@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Ui/Login/bloc/login_bloc.dart';
 
 import 'package:flutter_application_1/Repository/LoginRep.dart';
 
-import 'package:flutter_application_1/bloc/login_bloc.dart';
+
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,14 +31,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("login"),
+          title: Text("login",style: TextStyle(fontSize: 30.sp),),
         ),
         body: BlocConsumer<LoginBloc, LoginState>(
           listenWhen: (previous, current) => current is LogininitstateSucsess,
           buildWhen: (previous, current) => current is LogininitstateSucsess,
           listener: (context, state) {
             if (state is LogininitstateSucsess) {
-              return context.go('/verify');
+              return context.pushReplacement('/verify');
             } else if (state is LogininitstateError) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text("Some thing Wrong")));
@@ -83,15 +85,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 MaterialButton(
-                  height: 90,
-                  minWidth: 70,
+                  height: 90.h,
+                  minWidth: 70.w,
                   child: Container(
                     color: Color.fromARGB(255, 92, 227, 162),
                     padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: const Text(
+                    child:  Text(
                       "Login",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.blueGrey),
+                      style: TextStyle(color: Colors.blueGrey,fontSize: 15.sp),
                     ),
                   ),
                   onPressed: () async {
@@ -111,13 +113,13 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 _header(context) {
-  return const Column(
+  return Column(
     children: [
       Text(
         "Welcome To Happy Meal",
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
       ),
-      Text("Enter your Number to login"),
+      Text("Enter your Number to login",style: TextStyle(fontSize: 12.sp),),
     ],
   );
 }

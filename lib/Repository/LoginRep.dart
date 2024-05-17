@@ -32,8 +32,9 @@ class Auth {
 
   static Future<bool> setotp(String number, String otp) async {
     var dio = Dio();
-    var c = await sharedPreferences!.getString("Number");
-    var d = {"phone_number": c, "otp": "1111"};
+    var a = await sharedPreferences!.getString("otp");
+    var c = await sharedPreferences!.getString("Number").toString();
+    var d = {"phone_number": c, "otp": a};
 
     try {
       var secondRespons = await dio.post(
