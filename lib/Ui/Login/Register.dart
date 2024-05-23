@@ -31,6 +31,9 @@ class _Register extends State<Register> {
           buildWhen: (previous, current) => current is SetNameinitSucsess,
           listener: (context, state) {
             if (state is SetNameinitSucsess) {
+              while (context.canPop() == true) {
+                context.pop();
+              }
               return context.pushReplacement('/category');
             } else {
               ScaffoldMessenger.of(context)

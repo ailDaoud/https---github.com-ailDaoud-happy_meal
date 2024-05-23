@@ -33,34 +33,36 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-             Center(
-              child: CircleAvatar(
-                maxRadius: 30.sp,
-                minRadius: 20.sp,
-                child: Icon(Icons.restaurant_menu),
-                foregroundColor: Colors.blueAccent,
+      body: Container(
+        color: Colors.white,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: CircleAvatar(
+                    backgroundColor: Colors.greenAccent,
+                    maxRadius: 80,
+                    minRadius: 80,
+                    child: Image.asset(
+                      'images/240_F_330615996_BsfQgJv5i8VZdVaFAblNIeur3V2sRqSS.jpg',
+                      fit: BoxFit.fill,
+                    )),
               ),
-            ),
-            SizedBox(
-             height: MediaQuery.of(context).size.height / 10,
-            ),
-            Center(
-              child: Text(
-                "Happy Meal",
-                style: TextStyle(
-                  color: Colors.amber[600],
-                  fontSize: 40.sp,
+              Center(
+                child: Text(
+                  "Happy Meal",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40.sp,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            ),
-          ]),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 10,
+              ),
+            ]),
+      ),
     );
   }
 }

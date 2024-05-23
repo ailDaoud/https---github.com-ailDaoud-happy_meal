@@ -39,7 +39,7 @@ class _VarifyState extends State<Varify> {
         buildWhen: (previous, current) => current is VarityinitStateError,
         listener: (context, state) {
           if (state is VarityinitStateSucsess) {
-            return context.go('/register');
+            return context.pushReplacement('/register');
           } else if (state is VarityinitStateError) {
             AwesomeDialog(
               context: context,
@@ -55,14 +55,16 @@ class _VarifyState extends State<Varify> {
           }
         },
         builder: (context, state) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              _header(context),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Form(
                   key: formstate,
                   child: OTPTextField(
+                      keyboardType: TextInputType.number,
                       controller: otpController,
                       length: 4,
                       width: MediaQuery.of(context).size.width,
@@ -76,9 +78,6 @@ class _VarifyState extends State<Varify> {
                         sharedPreferences!.setString("otp", pin);
                       }),
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 10,
               ),
               MaterialButton(
                   child: Container(
@@ -101,4 +100,19 @@ class _VarifyState extends State<Varify> {
       ),
     );
   }
+}
+
+_header(context) {
+  return Column(
+    children: [
+      Text(
+        "Welcome To Happy Meal",
+        style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+      ),
+      Text(
+        "Enter otp code",
+        style: TextStyle(fontSize: 12.sp),
+      ),
+    ],
+  );
 }

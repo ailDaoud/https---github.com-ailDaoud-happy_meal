@@ -17,7 +17,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     Categoryy categoryy = Categoryy();
     try {
       categoryy = await ContantRep().fetchcategories();
-      if (categoryy == null) {
+      if (categoryy.data == null) {
         emit(LoadingCategories());
       } else {
         emit(Cetcategoriessucsess(categoryy));

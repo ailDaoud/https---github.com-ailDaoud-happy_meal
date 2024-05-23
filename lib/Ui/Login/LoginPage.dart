@@ -3,7 +3,6 @@ import 'package:flutter_application_1/Ui/Login/bloc/login_bloc.dart';
 
 import 'package:flutter_application_1/Repository/LoginRep.dart';
 
-
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +30,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("login",style: TextStyle(fontSize: 30.sp),),
+          backgroundColor: Colors.greenAccent,
+          title: Text(
+            "login",
+            style: TextStyle(fontSize: 30.sp),
+          ),
         ),
         body: BlocConsumer<LoginBloc, LoginState>(
           listenWhen: (previous, current) => current is LogininitstateSucsess,
@@ -85,15 +88,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 MaterialButton(
-                  height: 90.h,
-                  minWidth: 70.w,
+                  // height: 90.h,
+                  //  minWidth: 70.w,
                   child: Container(
                     color: Color.fromARGB(255, 92, 227, 162),
                     padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child:  Text(
+                    child: Text(
                       "Login",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.blueGrey,fontSize: 15.sp),
+                      style: TextStyle(color: Colors.blueGrey, fontSize: 15.sp),
                     ),
                   ),
                   onPressed: () async {
@@ -119,7 +122,10 @@ _header(context) {
         "Welcome To Happy Meal",
         style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
       ),
-      Text("Enter your Number to login",style: TextStyle(fontSize: 12.sp),),
+      Text(
+        "Enter your Number to login",
+        style: TextStyle(fontSize: 12.sp),
+      ),
     ],
   );
 }

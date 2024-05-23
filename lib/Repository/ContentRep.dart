@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/Models/Prodactmodel.dart';
 import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 import 'package:flutter_application_1/Models/caregoriesmodel.dart';
@@ -30,6 +31,7 @@ class ContantRep {
       List<Datum> res = subProdacts.data.toList();
       return res;
     } on DioException catch (e) {
+      debugPrint(e.message);
       return [];
     }
   }
@@ -42,6 +44,7 @@ class ContantRep {
       GetProdacts getProdacts = GetProdacts.fromJson(response.data);
       return getProdacts;
     } on DioException catch (e) {
+      debugPrint(e.message);
       return GetProdacts();
     }
   }

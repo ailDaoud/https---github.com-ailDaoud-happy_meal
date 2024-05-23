@@ -6,8 +6,6 @@ import 'package:flutter_application_1/Models/Subprodactsmodel.dart';
 import 'package:flutter_application_1/Models/caregoriesmodel.dart';
 import 'package:flutter_application_1/Ui/Product/Productui.dart';
 
-
-
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,11 +41,11 @@ class _CategoriesUiStateState extends State<CategoriesUiState> {
                 color: Colors.black),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 14,
+            height: MediaQuery.of(context).size.height / 24,
           ),
-          SSS(),
+          Categories(),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 14,
+            height: MediaQuery.of(context).size.height / 20,
           ),
           BlocBuilder<ContentBloc, ContentState>(
             builder: (context, state) {
@@ -58,7 +56,11 @@ class _CategoriesUiStateState extends State<CategoriesUiState> {
                     subcate: state
                         .subcategory); //Subcategories(subcate: state.subcategory);
               } else if (state is LoadingSubCategories) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: Text(
+                  "there is no item !!!",
+                  style: TextStyle(color: Colors.red),
+                ));
               }
               return const SizedBox();
             },
@@ -69,8 +71,8 @@ class _CategoriesUiStateState extends State<CategoriesUiState> {
   }
 }
 
-class SSS extends StatelessWidget {
-  SSS({super.key});
+class Categories extends StatelessWidget {
+  Categories({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,35 +100,35 @@ class Sucsess extends StatelessWidget {
   final int currentindex = sharedPreferences!.getInt("catid") ?? 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 35.0.h,
-      margin: const EdgeInsets.only(top: 16),
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount:
-              cate.data!.categories.length, //cate.data!.categories.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () async {
-                await BlocProvider.of<ContentBloc>(context)
-                  ..add(GetsubCategories());
-                sharedPreferences!
-                    .setInt("catid", cate.data!.categories[index].id);
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 10.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: index == currentindex
-                        ? Colors.blueAccent
-                        : Colors.greenAccent),
-                child: Text(
-                  "${cate.data!.categories[index].name}",
-                  style: TextStyle(fontSize: 12.sp),
+    return SafeArea(
+      child: Container(
+        height: 35.0.h,
+        margin: const EdgeInsets.only(top: 16),
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount:
+                cate.data!.categories.length, //cate.data!.categories.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () async {
+                  await BlocProvider.of<ContentBloc>(context)
+                    ..add(GetsubCategories());
+                  sharedPreferences!
+                      .setInt("catid", cate.data!.categories[index].id);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 10.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Colors.greenAccent),
+                  child: Text(
+                    "${cate.data!.categories[index].name}",
+                    style: TextStyle(fontSize: 12.sp),
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+      ),
     );
   }
 }
@@ -148,7 +150,7 @@ class _SubcategoriesState extends State<Subcategories> {
     return SizedBox(
       height: 50.h,
       child: ListView.builder(
-        itemCount: 3, //subcate.length,
+        itemCount: subcate.length, //subcate.length,
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
@@ -172,7 +174,7 @@ class Name extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: 3, //subcate.length,
+        itemCount: subcate.length, //subcate.length,
         itemBuilder: (context, index) {
           return Center(
             child: Card(

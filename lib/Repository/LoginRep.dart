@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 
 import 'package:flutter_application_1/main.dart';
 
-const String baseurl = 'https://meal-market.com/api/';
+const String baseurl = 'https://meal-market.com/api';
 
 class Auth {
   static Future<bool> fetchotp(String number) async {
@@ -14,7 +14,7 @@ class Auth {
     var d = {"phone_number": number};
     try {
       var firstRespons = await dio.post(
-        'https://meal-market.com/api/request_otp',
+        '$baseurl/request_otp',
         data: jsonEncode(d),
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -38,7 +38,7 @@ class Auth {
 
     try {
       var secondRespons = await dio.post(
-        'https://meal-market.com/api/verify_otp',
+        '$baseurl/verify_otp',
         data: jsonEncode(d),
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json",
@@ -65,7 +65,7 @@ class Auth {
     var d = {"name": name};
     try {
       var thirdresponse = await dio.post(
-        'https://meal-market.com/api/submit_name',
+        '$baseurl/submit_name',
         data: jsonEncode(d),
         options: Options(headers: {
           'Authorization': 'Bearer $token',
